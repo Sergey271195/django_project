@@ -1,0 +1,23 @@
+{% extends 'daily_tasks/base.html'%}
+{% block content %}
+
+<div class = 'content'>
+    <img class = 'profile_image' src = '{{user.profile.image.url}}'>
+    <div class='media'>
+        <h2>{{user.username}}</h2>
+        <p>{{user.email}}</p>
+    </div>
+</div>
+
+<form method="POST"  enctype="multipart/form-data">
+    
+    {%csrf_token%}
+    <div class="container_form">
+    <label for="email"><b>Change your Email</b></label>
+    <input type="email" pattern=".+@*.com" placeholder="Email" name="email">    
+    <label for="user_image"><b>Choose your profile image</b></label><br>
+    <input type = "file" class = "file_input" name ="user_image">
+    <button type="submit">Submit changes</button>
+    </div>
+  </form>
+{% endblock content %}

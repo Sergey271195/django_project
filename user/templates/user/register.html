@@ -1,0 +1,33 @@
+{% extends 'daily_tasks/base.html'%}
+{% block content %}
+
+<form method="POST">
+    {%csrf_token%}
+        
+    <div class="register_form">
+        <div class='lbl'>Registration</div>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter username" name="uname" required>
+      <small class = "error_message">{{form.already_exist_message}}<br></small>
+  
+      <label for="psw1"><b>Password</b></label>
+      <input type="password" placeholder="Enter password" name="psw1" required>
+
+      <label for="psw2"><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm password" name="psw2" required>
+      <small class = "error_message">{{form.password_not_match_message}}<br></small>
+
+      <label for="email"><b>Enter your Email</b></label>
+      <input type="email" pattern=".+@*.com" placeholder="Email" name="email">
+      <small class = "error_message">{{form.invalid_email}}<br></small>
+      <small class = "error_message">{{form.already_exist}}<br></small>
+      <button type="submit">Sign Up</button>
+      <div>
+          <small>Have an existing Account?
+              <a href="{% url 'login' %}">Log In</a>
+          </small>
+      </div>
+
+    </div>
+  </form>
+{% endblock content %}

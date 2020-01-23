@@ -1,0 +1,24 @@
+{% extends 'daily_tasks/base.html'%}
+{% block content %}
+
+<form method="POST">
+    {%csrf_token%}
+        
+    <div class="register_form">
+        <div class='lbl'>Welcome</div>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter username" name="uname" required>
+  
+      <label for="psw1"><b>Password</b></label>
+      <input type="password" placeholder="Enter password" name="psw" required>
+
+      <button type="submit">Log In</button>
+      <div>
+          <small>Don't have an account?
+              <a href="{% url 'register'%}">Sign Up</a>
+          </small>
+      </div>
+
+    </div>
+  </form>
+{% endblock content %}

@@ -1,0 +1,60 @@
+
+{% extends 'daily_tasks/base.html'%}
+{% block content %}
+
+<form  method="POST">
+  {%csrf_token%}
+  <div class="container_form">
+    <div class = 'lbl'>Search and filter</div>
+    <label for="uname"><b>Executor</b></label>
+    <input type="text" placeholder="Enter executor name" name="executor">
+    <label for="Head"><b>Head</b></label>
+    <input type="text" placeholder="Enter head name" name="head">
+    <label for="Content"><b>Content</b></label>
+    <input type="text" placeholder="Enter content of task" name="content">
+    <label for="time"><b>Assignment date</b></label><br>
+    <input class = "date_input" type="date" name="assignment_date">
+    <br>
+    <button type="submit" name = 'search_button'>Search</button>
+  </div>
+    <!--<div class="container_form">
+        <div class = 'lbl'>Create Task</div>
+        <hr>
+      <label for="uname"><b>Executor</b></label>
+      <input type="text" placeholder="Enter name" name="executor" required>
+  
+      <label for="psw"><b>Task</b></label>
+      <textarea class = "task_content" type="text" placeholder="Enter task" name="content" required></textarea>
+      <label for="time"><b>End date</b></label>
+      <div>
+        <input class = "date_input" type="date" placeholder="Enter date" name="end_date" required>
+      </div>
+      
+          
+      <button type="submit" name = 'create_task'>Add task</button>
+
+    </div>
+  </form>-->
+    <div class="task_field">
+        <div class="lbl">Daily Tasks</div>
+        <hr>
+    {% for task in tasks %}
+        <img class = 'task_image' src = '{{task.head.profile.image.url}}'>
+        <img class = 'task_image' src = '{{task.full_filename}}'>
+        <img class = 'task_image' src = '{{task.executor.profile.image.url}}'>
+        <p>From {{task.head}} to {{task.executor}}</p>
+        <h2><a href="{% url 'tasks:task_details' task.pk %}">{{task.content}}<a></h2>
+        <small>Assigned on {{task.assignment_date|date:'F d, Y'}}. <br>Deadline: {{task.end_date|date:'F d, Y'}}.</small>
+        <small>Current status: {{task.status}}.</small><br>
+        
+          <form method="POST">
+            {%csrf_token%}
+          {% if task.status != 'Complete' %}  
+          <button type="submit" name = 'completed' value='{{task.pk}}'>Completed</button>
+          {% endif %}
+          <button type="submit" name = 'details' value='{{task.pk}}'>Details</button>
+          </form>
+        <hr>
+    {% endfor %}
+    </div>
+{% endblock content %}
