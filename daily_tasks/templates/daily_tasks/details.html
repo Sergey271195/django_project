@@ -1,5 +1,26 @@
 {% extends 'daily_tasks/base.html'%}
 
 {% block content %}
-<h1>Page for task №{{task.pk}}</h1>
+<h1></h1>
+<div class = 'task_instance'>   
+<img class = 'task_image' src = '{{task.head.profile.image.url}}'>
+<p style = 'float: left; font-size: 20px; margin-right: 20px'>>></p>
+<img class = 'task_image' src = '{{task.executor.profile.image.url}}'>
+<br><br><br>
+<p>From {{task.head}} to {{task.executor}}</p>
+<h2><a href="{% url 'tasks:task_details' task.pk %}">{{task.content}}<a></h2>
+<small>Assigned on {{task.assignment_date|date:'F d, Y'}}. <br>Deadline: {{task.end_date|date:'F d, Y'}}.</small>
+<small>Current status: {{task.status}}.</small><br>
+<small>Time left: {{days}} days, {{hours}} hours.</small><br>
+
+<form method="POST">
+    {%csrf_token%}
+  {% if task.status != 'Complete' %}  
+  <button type="submit" name = 'completed' value='{{task.pk}}' style = 'width: 15%'>Completed</button>
+  {% elif task.status == 'Complete' %}
+  <button type="submit" name = 'in_progress' value='{{task.pk}}' style = 'width: 15%'>In progress</button>  
+  {% endif %}
+  <button type="submit" name = 'delete' value='{{task.pk}}' style = 'width: 15%'>Delete</button>
+  </form>
+
 {% endblock content %}

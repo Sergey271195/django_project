@@ -13,7 +13,7 @@ class NewTaskForm(forms.ModelForm):
         self.model = Task()
 
     def check_user(self, executor):
-        if User.objects.filter(username = executor).first() is None:
+        if User.objects.filter(pk = executor).first() is None:
             return False
         else:
             return True
@@ -28,14 +28,15 @@ class NewTaskForm(forms.ModelForm):
         
     def is_valid(self, request):
         if request.method == 'POST':
-            self.executor = request.POST.get('executor')
+            self.executor = request.POST['executor']
             self.end_date = request.POST.get('end_date')
             self.content = request.POST.get('content')
             
             if (self.check_user(self.executor) and self.check_date(self.end_date)):
                 self.model.head = User.objects.filter(username = request.user).first()
-                self.model.executor = User.objects.filter(username = self.executor).first()
+                self.model.executor = User.objects.filter(pk= self.executor).first()
                 self.model.end_date = self.end_date
                 self.model.content = self.content
                 self.model.status = 'In Progress'
                 self.model.save()
+                return self.model.pk

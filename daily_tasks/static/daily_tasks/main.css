@@ -68,6 +68,9 @@ input[type=text], input[type=password], input[type=email] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+input[type=radio] {
+  margin-right: 10px;
+}
 
 .task_content {
   border-radius: 10px;
@@ -81,16 +84,25 @@ input[type=text], input[type=password], input[type=email] {
 
 div.lbl {
   background-color: rgb(11, 46, 202);
-  height: 60px;
-  line-height: 60px;
+  height: 40px;
+  line-height: 40px;
   color:white;
   padding-left: 20px;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 10px;
+  margin-top: 20px;
+  width: 80%;
 }
 
 .date_input {
   border-radius: 5px;
+}
+
+.create_form {
+  width: 60%;
+  margin-top: 30px;
+  border-left: 1px solid rgb(11, 46, 202);
+  padding-left: 40px;
 }
 
 .file_input {
@@ -98,11 +110,9 @@ div.lbl {
 }
 
 button {
-  background-color: rgb(11, 46, 202);
   color: rgb(11, 46, 202);
   padding: 14px 20px;
   margin: 8px 0;
-  border: 10px solid red;
   cursor: pointer;
   width: 60%;
 }
@@ -128,7 +138,7 @@ button:hover {
   width: 40%;
   background-color: white;
   padding: 10px 20px 10px 20px;
-  border: 1px solid grey;
+  border-left: 1px solid rgb(11, 46, 202);
 }
 
 .task_field {
@@ -137,7 +147,11 @@ button:hover {
   width: 55%;
   background-color: white;
   padding: 20px 20px 10px 20px;
-  border: 1px solid grey;
+}
+
+.task_instance {
+  border-left: 1px solid rgb(11, 46, 202);
+  padding: 20px 20px 10px 50px;
 }
 
 .register_form {
@@ -179,6 +193,7 @@ img {
 }
 
 .task_image {
+  float: left;
   margin-right: 20px;
   width: 60px;
   height: 60px;

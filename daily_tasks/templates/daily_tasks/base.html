@@ -23,7 +23,7 @@
     <ul>
         <li><a href="{% url 'tasks:tasks_page' %}">Home</a></li>
         <li><a href="#news" id = 'news'>News</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="{% url 'tasks:create_task' %}">Create Task</a></li>
         <li><a href="{% url 'tasks:tasks_page_about' %}">About</a></li>
         {% if user.is_authenticated %}
             <li class = "right"><a href="{% url 'profile' %}">Profile</a></li>
@@ -34,11 +34,6 @@
         {%endif%}
       </ul>
       <div class = 'container'>
-        <!--<script>
-        document.addEventListener("keydown", function(){
-          document.getElementById("news").innerHTML = "{{user.username}}";
-        });
-        </script>-->
         {% if messages %}
             {% for message in messages %}
                 <div class = "alert alert -{{message.tags}}">
@@ -49,9 +44,13 @@
         {% block content %}{% endblock %}
     </div>
     <!-- Optional JavaScript -->
+    {%if user.username == 'SergeyMS'%}
+    {% endif %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+<script type = "text/javascript">
+ </script>
 </html>

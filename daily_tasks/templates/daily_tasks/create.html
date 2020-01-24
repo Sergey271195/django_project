@@ -1,0 +1,27 @@
+{% extends 'daily_tasks/base.html'%}
+{% block content %}
+<form  method="POST">
+    {%csrf_token%}
+    <div class = 'lbl'>Create Task</div>
+        
+<div class="create_form">
+    <hr>
+      <label for="uname"><b>Executor</b></label><br>
+      <select name="executor">
+        {% for user in users %}
+        <option value="{{user.pk}}">{{user.username}}</option>
+        {% endfor %}
+      </select><br>
+      <label for="psw"><b>Task</b></label>
+      <textarea class = "task_content" type="text" placeholder="Enter task" name="content" required></textarea>
+      <label for="time"><b>End date</b></label>
+      <div>
+        <input class = "date_input" type="date" placeholder="Enter date" name="end_date" required>
+      </div>
+      
+          
+      <button type="submit" name = 'create_task'>Add task</button>
+
+    </div>
+  </form>
+  {% endblock content %}

@@ -1,11 +1,13 @@
 
 {% extends 'daily_tasks/base.html'%}
 {% block content %}
-
+{%load static%}
 <form  method="POST">
   {%csrf_token%}
   <div class="container_form">
-    <div class = 'lbl'>Search and filter</div>
+    <div class = 'lbl' id = 'search_label'>Search</div>
+    <div id = 'search_content' 
+    style = 'border-left: 1px solid rgb(11, 46, 202); padding-left: 20px'>
     <label for="uname"><b>Executor</b></label>
     <input type="text" placeholder="Enter executor name" name="executor">
     <label for="Head"><b>Head</b></label>
@@ -16,45 +18,35 @@
     <input class = "date_input" type="date" name="assignment_date">
     <br>
     <button type="submit" name = 'search_button'>Search</button>
-  </div>
-    <!--<div class="container_form">
-        <div class = 'lbl'>Create Task</div>
-        <hr>
-      <label for="uname"><b>Executor</b></label>
-      <input type="text" placeholder="Enter name" name="executor" required>
-  
-      <label for="psw"><b>Task</b></label>
-      <textarea class = "task_content" type="text" placeholder="Enter task" name="content" required></textarea>
-      <label for="time"><b>End date</b></label>
-      <div>
-        <input class = "date_input" type="date" placeholder="Enter date" name="end_date" required>
-      </div>
-      
-          
-      <button type="submit" name = 'create_task'>Add task</button>
-
     </div>
-  </form>-->
+    <div class = 'lbl' id = 'filter_label'>Filter</div>
+    <div class = 'filter_block' id = 'filter_content'
+     style = 'border-left: 1px solid rgb(11, 46, 202); padding-left: 20px'>
+    <input type="radio" name = 'filter_choice' value = 'Complete'>Completed</button><br>
+    <input type="radio" name = 'filter_choice' value = 'In Progress'>In progress</input><br>
+    <input type="radio" name = 'filter_choice' value = 'All'>All</input><br>
+    <button type="submit" name = 'filter'>Filter</button>
+    </div>
+
+  </div>
+  </form>
     <div class="task_field">
         <div class="lbl">Daily Tasks</div>
         <hr>
     {% for task in tasks %}
+        <div class = 'task_instance'>
         <img class = 'task_image' src = '{{task.head.profile.image.url}}'>
         <img class = 'task_image' src = '{{task.full_filename}}'>
         <img class = 'task_image' src = '{{task.executor.profile.image.url}}'>
+        <br><br><br>
         <p>From {{task.head}} to {{task.executor}}</p>
         <h2><a href="{% url 'tasks:task_details' task.pk %}">{{task.content}}<a></h2>
         <small>Assigned on {{task.assignment_date|date:'F d, Y'}}. <br>Deadline: {{task.end_date|date:'F d, Y'}}.</small>
         <small>Current status: {{task.status}}.</small><br>
-        
-          <form method="POST">
-            {%csrf_token%}
-          {% if task.status != 'Complete' %}  
-          <button type="submit" name = 'completed' value='{{task.pk}}'>Completed</button>
-          {% endif %}
-          <button type="submit" name = 'details' value='{{task.pk}}'>Details</button>
-          </form>
+        </div>
         <hr>
+        
     {% endfor %}
     </div>
+    <script type="text/javascript" src="{% static 'daily_tasks/move.js'%}"></script>
 {% endblock content %}
