@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    {% block additional_media %}{% endblock %}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type = "text/css" href = "{% static 'daily_tasks/main.css'%}">
@@ -22,7 +22,7 @@
 <body>
     <ul>
         <li><a href="{% url 'tasks:tasks_page' %}">Home</a></li>
-        <li><a href="#news" id = 'news'>News</a></li>
+        <li><a href="{% url 'programs_page' %}" id = 'programs'>Programs</a></li>
         <li><a href="{% url 'tasks:create_task' %}">Create Task</a></li>
         <li><a href="{% url 'tasks:tasks_page_about' %}">About</a></li>
         {% if user.is_authenticated %}

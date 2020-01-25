@@ -1,0 +1,65 @@
+input[type=text].program_input {
+    width: 60%;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+label {
+    width: 50px;
+}
+
+.new_form {
+    height: 500px;
+    width: 50%;
+    float: left;
+    margin-top: 30px;
+    border-left: 1px solid rgb(11, 46, 202);
+    padding-left: 40px;
+  }
+
+.option {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.details_content {
+    border-radius: 10px;
+    text-indent: 10px;
+    width: 75%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 100px;
+    font-size: 13px;
+  }
+
+  hr {
+      width: 80%;
+      float: left;
+  }
+
+  div.lbl_program {
+    background-color: rgb(11, 46, 202);
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color:white;
+    padding-left: 20px;
+    font-size: 20px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    margin-right: 100px;
+    width: 90%;
+  }
+table {
+    width: 100%;
+}
+  td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgb(209, 204, 204);
+  }
