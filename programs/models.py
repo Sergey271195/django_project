@@ -15,10 +15,13 @@ class Program(models.Model):
     KKS = models.CharField(max_length = 20)
     name = models.TextField()
     status = models.CharField(max_length = 20)
-    deatils = models.TextField()
+    details = models.TextField()
     program_type = models.CharField(max_length = 20)
     block = models.IntegerField()
-    in_current_status = 0
+    in_current_status = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return (str(self.KKS)+ ' -  ID '+str(self.program_id))
 
     def change_status(self):
         pass

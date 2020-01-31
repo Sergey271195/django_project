@@ -9,14 +9,15 @@
     
             
 <div class="new_form">
-    <div class = 'lbl_program'>Update programm</div>
+    <div class = 'lbl_program'>Update program</div>
     <hr><br><br><br><br>
       <label for="ID"><b>ID</b></label>
-      <input type="text" placeholder="Enter ID" name="ID" class = 'program_input' required><br>
+      <input type="text" placeholder="Enter ID" name="program_id" class = 'program_input'><br>
       <label for="KKS"><b>KKS</b></label>
-      <input type="text" placeholder="Enter KKS" name="KKS" class = 'program_input' required><br>
+      <input type="text" placeholder="Enter KKS" name="KKS" class = 'program_input'><br>
       <label for="type"><b>Type</b></label>
-      <select name="type">
+      <select name="program_type">
+        <option value=""></option>
         <option value="PMO">PMO</option>
         <option value="GI">GI</option>
         <option value="IE">PNR</option>
@@ -24,28 +25,52 @@
       </select>
       <label for="block" class='option'><b>Block</b></label>
       <select name="block">
+        <option value=""></option>
         <option value="1">1</option>
         <option value="2">2</option>
       </select>
       <label for="status" class='option'><b>Status</b></label>
       <select name="status">
+        <option value=""></option>
         <option value="Approved">Approved</option>
         <option value="On correction">On correction</option>
         <option value="Replication">Replication</option>
         <option value="Employer">Employer</option>
-      </select><br>  
-    </div>
-<div class="new_form">
-    <div class = 'lbl_program'>More information</div>  
-    <hr><br><br><br><br>
+      </select><br>
       <label for="name"><b>Name</b></label><br>
       <textarea class = "details_content" type="text" placeholder="Name..." name="name"></textarea><br>
       <label for="details"><b>Details</b></label><br>
       <textarea class = "details_content" type="text" placeholder="Details..." name="details"></textarea><br>
              
-      <button type="submit" name = 'add_program'>Add program</button>
+      <button type="submit" name = 'update_program'>Update program</button>
+      <button type="submit" name = 'delete_program' style = 'margin-left: 20px'>Delete program</button><br><hr>  
+    </div>
+<div class="new_form">
+    <div class = 'lbl_program'>Current information</div>  
+    <hr><br><br><br><br>
+    <label for="ID" style = 'float: left; min-width: 150px'><b>ID:</b></label>
+    <p class = 'current_info'>{{program.program_id}}</p><hr>
+    <label for="KKS" style = 'float: left; min-width: 150px'><b>KKS:</b></label>
+    <p class = 'current_info'>{{program.KKS}}</p><hr>
+    <label for="type" style = 'float: left; min-width: 150px'><b>Type:</b></label>
+    <p class = 'current_info'>{{program.program_type}}</p><hr>
+    <label for="block" style = 'float: left; min-width: 150px'><b>Block:</b></label>
+    <p class = 'current_info'>{{program.block}}</p><hr>
+    <label for="status" style = 'float: left; min-width: 150px'><b>Status:</b></label>
+    <p class = 'current_info'>{{program.status}}</p><hr>
+    <label for="name" style = 'float: left; min-width: 150px'><b>Name:</b></label>
+    <p class = 'current_info'>{{program.name}}</p><hr>
+    <label for="modified_by" style = 'float: left; min-width: 150px'><b>Last modified by:</b></label>
+    <p class = 'current_info'>{{program.modified_by}}</p><hr>
+    <label for="last_modified" style = 'float: left; min-width: 150px'><b>Last modified:</b></label>
+    <p class = 'current_info'>{{program.last_modified}}</p><hr>
+    <label for="status_update" style = 'float: left; min-width: 150px'><b>Last status change:</b></label>
+    <p class = 'current_info'>{{program.status_update}}</p><hr>
+    <label for="in_current_status" style = 'float: left; min-width: 150px'><b>In current status:</b></label>
+    <p>{{program.in_current_status}} days</p><hr>
+    <label for="details" style = 'float: left; min-width: 150px'><b>Details:</b></label>
+    <p class = 'current_info'>{{program.details}}</p><br><hr> 
 
     </div>
   </form>
   {% endblock content %}
-{% endblock %}

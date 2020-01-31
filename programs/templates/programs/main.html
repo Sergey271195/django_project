@@ -11,7 +11,14 @@
       <th id = 'KKS'>KKS</th>
       <th id = 'Name'>Name</th>
       <th class = 'head'>Type</th>
-      <th class = 'head'>Block</th>
+      <th id = 'head'>
+      <p id = 'open' style = 'word-spacing: 10px'>Block &#9660;</p>
+      </th>
+      <div id = 'tail' class = 'dropdown_content'>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
       <th class = 'head'>Status</th>
       <th class = 'head'>Updated</th>
       <th class = 'head'>In current status</th>
@@ -19,13 +26,13 @@
 {% for program in programs %}
 <tr>
     <td>{{program.program_id}}</td>
-    <td><a href = '#'>{{program.KKS}}</a></td>
+    <td><a href = '{% url "program_details" program.program_id %}'>{{program.KKS}}</a></td>
     <td>{{program.name}}</td>
     <td>{{program.program_type}}</td>
     <td>{{program.block}}</td>
     <td>{{program.status}}</td>
     <td>{{program.status_update|date:'F d, Y'}}</td>
-    <td>{{program.in_currnet_status}}</td>
+    <td>{{program.in_current_status}} days</td>
   </tr>
 {% endfor %}
 <form method = "POST">

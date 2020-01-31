@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Program
-from .forms import NewProgramForm
+from .forms import NewProgramForm, UpdateProgramForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your views here.
 class ProgramPageView():
@@ -13,48 +14,44 @@ class ProgramPageView():
     def as_view(self, request):
         print(request.method)
         if request.method == "GET":
+            for program in Program.objects.all():
+                program.in_current_status = update_status_time(program)
+                program.save(update_fields = ['in_current_status'])
             return(render(request, 'programs/main.html', {'programs': Program.objects.all()}))
         elif request.method == "POST":
             if 'add' in request.POST:
                 return(render(request, 'programs/new_program.html'))
-                print(request.POST)
             elif 'add_program' in request.POST:
                 valid, program_id = self.form.is_valid(request)
                 if valid:
-                    return HttpResponseRedirect(reverse('program_details', 
-                kwargs={'program_id':program_id}))
+                    return(redirect('programs_page'))
                 else:
                     return(render(request, 'programs/new_program.html'))
 
 
-class ProgramDetailsView():       
+class ProgramDetailsView():
+    def __init__(self):
+        self.form = UpdateProgramForm()
+
     def as_view(self, request, program_id):
         self.program = Program.objects.filter(program_id=program_id).first()
         if request.method == 'GET':
-            return(render(request, 'programs/details.html', {'program': self.program}))
-        if request.method == 'POST':
-            if 'completed' in request.POST:
-                if (request.user == task.executor or request.user == task.head):
-                    task.status = 'Complete'
-                    task.save(update_fields = ['status'])
-                return(render(request, 'daily_tasks/details.html', {'task': task, 
-                'days': days, 'hours': hours}))
-            elif 'in_progress' in request.POST:
-                task.status = 'In progress'
-                task.save(update_fields = ['status'])
-                return(render(request, 'daily_tasks/details.html', {'task': task, 
-                'days': days, 'hours': hours}))
-            elif 'delete' in request.POST:
-                task.delete()
-                return redirect('tasks:tasks_page')
+            if self.program is not None:
+                return(render(request, 'programs/details.html', {'program': self.program}))
+            else:
+                return(redirect('programs_page'))
 
-def calculate_time(task):
-    time_left = (task.end_date - timezone.now()).total_seconds()
-    if time_left > 0:
-        days_left = int(time_left//(24*3600))
-        hours_left = int(time_left - days_left*(24*3600))//3600
-    else:
-        days_left = hours_left = 0
-    return (days_left, hours_left)
+        if request.method == 'POST':
+            if 'delete_program' in request.POST:
+                self.program.delete()
+                return(redirect('programs_page'))
+            elif 'update_program' in request.POST:
+                self.form.is_valid(request, self.program)
+                return(redirect('programs_page'))
+
+def update_status_time(program):
+    time_passed = (timezone.now()-program.status_update).total_seconds()
+    days_passed = int(time_passed//(24*3600))
+    return (days_passed)
 
     

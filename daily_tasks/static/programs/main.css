@@ -1,5 +1,5 @@
 input[type=text].program_input {
-    width: 60%;
+    width: 70%;
     margin-left: 15px;
     margin-bottom: 20px;
     font-size: 13px;
@@ -9,12 +9,13 @@ label {
 }
 
 .new_form {
-    height: 500px;
+    min-height: 500px;
     width: 50%;
     float: left;
     margin-top: 30px;
     border-left: 1px solid rgb(11, 46, 202);
     padding-left: 40px;
+    margin-bottom: 100px;
   }
 
 .option {
@@ -24,7 +25,7 @@ label {
 .details_content {
     border-radius: 10px;
     text-indent: 10px;
-    width: 75%;
+    width: 85%;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -32,12 +33,12 @@ label {
     font-size: 13px;
   }
 
-  hr {
+hr {
       width: 80%;
       float: left;
   }
 
-  div.lbl_program {
+div.lbl_program {
     background-color: rgb(11, 46, 202);
     float: left;
     height: 40px;
@@ -53,13 +54,58 @@ label {
 table {
     width: 100%;
 }
-  td, th {
+
+td, th {
     border: 1px solid #000000;
     text-align: left;
     padding: 8px;
-    font-size: 14px;
+    font-size: 12px;
   }
   
-  tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: rgb(209, 204, 204);
   }
+
+p {
+      float:left;
+  }
+
+  input[type=text].table_input {
+    margin-left: 10px;
+    margin-right: 0px;
+    width: 50%;
+    margin-bottom: 0px;
+    font-size: 10px;
+    height: 20px;
+}
+
+
+#head:hover {
+    background-color: brown;
+}
+
+.dropdown_content {
+    display: block;
+    position: absolute;
+    margin-top: 0px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+
+#head:hover ~ .dropdown_content {
+    display: block;
+}
+
+  
+.dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown_content a:hover {background-color: #f1f1f1;}
