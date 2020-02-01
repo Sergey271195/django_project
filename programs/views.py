@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Program
-from .forms import NewProgramForm, UpdateProgramForm
+from .forms import NewProgramForm, UpdateProgramForm, SortProgramsForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
@@ -9,6 +9,7 @@ from django.utils import timezone
 class ProgramPageView():
     def __init__(self):
         self.form = NewProgramForm()
+        self.sort_form = SortProgramsForm()
         self.model = Program
     
     def as_view(self, request):
@@ -27,6 +28,16 @@ class ProgramPageView():
                     return(redirect('programs_page'))
                 else:
                     return(render(request, 'programs/new_program.html'))
+            elif 'sort' in request.POST:
+
+                print(request.POST)
+                print(request.POST.keys())
+                print(len(request.POST.keys()))
+                content = self.sort_form.sort_programs(request)
+
+                return(render(request, 'programs/main.html', {'programs': content}))
+
+        
 
 
 class ProgramDetailsView():

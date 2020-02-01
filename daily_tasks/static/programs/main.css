@@ -80,12 +80,8 @@ p {
 }
 
 
-#head:hover {
-    background-color: brown;
-}
-
 .dropdown_content {
-    display: block;
+    display: none;
     position: absolute;
     margin-top: 0px;
     background-color: #f9f9f9;
@@ -95,9 +91,6 @@ p {
   }
 
 
-#head:hover ~ .dropdown_content {
-    display: block;
-}
 
   
 .dropdown_content a {
@@ -108,4 +101,11 @@ p {
     text-align: left;
   }
   
-  .dropdown_content a:hover {background-color: #f1f1f1;}
+  .add_btn {
+      float: right;
+      width: 15%;
+  }
+  .sort_btn {
+    float: right;
+    width: 15%;
+}
